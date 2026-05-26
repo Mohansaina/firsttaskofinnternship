@@ -6,11 +6,13 @@ import Link from "next/link";
 interface OnboardingWizardClientProps {
   apiHost: string;
   defaultDevKey: string;
+  userEmail: string;
 }
 
 export default function OnboardingWizardClient({
   apiHost,
   defaultDevKey,
+  userEmail,
 }: OnboardingWizardClientProps) {
   const [questions, setQuestions] = useState<string[]>([]);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
@@ -29,6 +31,7 @@ export default function OnboardingWizardClient({
           method: "GET",
           headers: {
             "X-API-Key": defaultDevKey,
+            "X-User-Email": userEmail,
           },
         });
 
@@ -91,6 +94,7 @@ export default function OnboardingWizardClient({
         headers: {
           "Content-Type": "application/json",
           "X-API-Key": defaultDevKey,
+          "X-User-Email": userEmail,
         },
         body: JSON.stringify({ answers }),
       });

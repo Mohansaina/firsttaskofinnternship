@@ -88,6 +88,7 @@ export default async function KBPage() {
         }))}
         apiHost={apiHost}
         defaultDevKey="sk_live_test_key_1234567890"
+        userEmail={user.email}
       />
     </div>
   );

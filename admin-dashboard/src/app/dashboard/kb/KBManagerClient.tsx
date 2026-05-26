@@ -14,12 +14,14 @@ interface KBManagerClientProps {
   initialDocs: DocItem[];
   apiHost: string;
   defaultDevKey: string;
+  userEmail: string;
 }
 
 export default function KBManagerClient({
   initialDocs,
   apiHost,
   defaultDevKey,
+  userEmail,
 }: KBManagerClientProps) {
   const [docs, setDocs] = useState<DocItem[]>(initialDocs);
   const [urlInput, setUrlInput] = useState("");
@@ -47,7 +49,8 @@ export default function KBManagerClient({
       const response = await fetch(`${apiHost}/api/kb/upload`, {
         method: "POST",
         headers: {
-          "X-API-Key": defaultDevKey, // Pass dev fallback API Key
+          "X-API-Key": defaultDevKey,
+          "X-User-Email": userEmail,
         },
         body: formData,
       });
@@ -93,6 +96,7 @@ export default function KBManagerClient({
         headers: {
           "Content-Type": "application/json",
           "X-API-Key": defaultDevKey,
+          "X-User-Email": userEmail,
         },
         body: JSON.stringify({ url: targetUrl }),
       });

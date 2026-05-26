@@ -48,6 +48,7 @@ export default async function OnboardingPage() {
         <OnboardingWizardClient
           apiHost={apiHost}
           defaultDevKey="sk_live_test_key_1234567890"
+          userEmail={user.email}
         />
       )}
     </div>
